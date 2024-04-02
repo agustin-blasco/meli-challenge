@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+
+  api:
+    build:
+      context: .
+      dockerfile: api.Dockerfile
+    ports:
+      - "8001:8000"
+    command: uvicorn api.main:app --host 0.0.0.0 --reload
+    volumes:
+      - ./:/app
+    depends_on:
+      - database
+
+  database:
+    build:
+      context: .
+      dockerfile: db.Dockerfile
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    user: postgres
+
+volumes:
+  postgres_data:

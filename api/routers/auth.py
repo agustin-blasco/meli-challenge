@@ -103,7 +103,7 @@ async def get_access_token(
 
     - **Response**:
 
-        - `list[AuditLogs]`: A list containing all the Logs saved in the DataBase.
+        - `Access Token` and `Token Type`.
     """
     user = authenticate_user(
         username=login_form_data.username, password=login_form_data.password, db=db
